@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CDDC39"
+    tools:context=".PackagingActivity">
+
+    <Button
+        android:id="@+id/bCont"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="460dp"
+        android:background="#2384DA"
+        android:text="Continue >>"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivOut"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="44dp"
+        android:background="#C6B6B6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/stat_sys_upload"
+        tools:src="@android:drawable/stat_sys_upload" />
+
+    <TextView
+        android:id="@+id/tvOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Takeaway"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivOut" />
+
+    <ImageView
+        android:id="@+id/ivIn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="256dp"
+        android:background="#C6B6B6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/stat_sys_download"
+        tools:src="@android:drawable/stat_sys_download" />
+
+    <TextView
+        android:id="@+id/tvIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eat in pizzeria"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivIn" />
+
+</android.support.constraint.ConstraintLayout>
