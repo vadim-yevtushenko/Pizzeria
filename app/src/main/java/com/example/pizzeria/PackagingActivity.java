@@ -13,6 +13,8 @@ public class PackagingActivity extends AppCompatActivity {
     private ImageView ivIn;
     private Button bCont;
     private boolean isSelect;
+    public static boolean firstEntry = true;
+
 
 
     @Override
@@ -40,10 +42,15 @@ public class PackagingActivity extends AppCompatActivity {
             ivIn.setBackgroundColor(Color.parseColor("#FF0000"));
         });
         bCont.setOnClickListener(v -> {
-            if (isSelect){
-                Intent intent2 = new Intent(this, FinalActivity.class);
-                intent2.putExtra(MainActivity.KEY_PIZZA, pizza);
-                startActivity(intent2);
+            if (firstEntry) {
+                if (isSelect){
+                    Intent intent2 = new Intent(this, FinalActivity.class);
+                    intent2.putExtra(MainActivity.KEY_PIZZA, pizza);
+                    firstEntry = false;
+                    startActivity(intent2);
+                }
+            } else {
+                returnPizza();
             }
         });
     }
@@ -52,5 +59,11 @@ public class PackagingActivity extends AppCompatActivity {
         ivOut = findViewById(R.id.ivOut);
         ivIn = findViewById(R.id.ivIn);
         bCont = findViewById(R.id.bCont);
+    }
+    private void returnPizza(){
+        Intent intent = new Intent();
+        intent.putExtra(MainActivity.KEY_PIZZA, pizza);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }

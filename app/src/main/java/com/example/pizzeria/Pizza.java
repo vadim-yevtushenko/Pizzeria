@@ -9,9 +9,9 @@ public class Pizza implements Serializable {
     private double cost;
     private Map<String, Double> filling;
     private Map<String, Integer> fillingResult;
-    public static final int BIG = 3;
-    public static final int MIDDLE = 2;
-    public static final int SMALL = 1;
+    public static final int BIG = 30;
+    public static final int MIDDLE = 25;
+    public static final int SMALL = 20;
     public static final String PORK = "Pork";
     public static final String CHICKEN = "Chicken";
     public static final String PINEAPPLE = "Pineapple";

@@ -2,7 +2,6 @@ package com.example.pizzeria;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -35,6 +34,7 @@ public class FillActivity extends AppCompatActivity {
     private TextView tvBasil;
     private TextView tvCoastView;
     private boolean isAdd = true;
+    public static boolean firstEntry = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +48,19 @@ public class FillActivity extends AppCompatActivity {
 
         initView();
         initButton();
+        initStartStageView();
         String startCoast = String.format("%.2f", pizza.getCost());
         tvCoastView.setText(startCoast);
 
         bContinue.setOnClickListener(v -> {
-            Intent intent2 = new Intent(this, PackagingActivity.class);
-            intent2.putExtra(MainActivity.KEY_PIZZA, pizza);
-            startActivity(intent2);
+            if (firstEntry) {
+                Intent intent2 = new Intent(this, PackagingActivity.class);
+                intent2.putExtra(MainActivity.KEY_PIZZA, pizza);
+                firstEntry = false;
+                startActivity(intent2);
+            } else {
+                returnPizza();
+            }
         });
 
         bPlus.setOnClickListener((v) -> {
@@ -123,6 +129,18 @@ public class FillActivity extends AppCompatActivity {
         });
     }
 
+    private void initStartStageView() {
+        tvPork.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.PORK), pizza.getFillingResult().get(Pizza.PORK)));
+        tvChicken.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.CHICKEN), pizza.getFillingResult().get(Pizza.CHICKEN)));
+        tvSausage.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.SAUSAGE), pizza.getFillingResult().get(Pizza.SAUSAGE)));
+        tvCheese.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.CHEESE), pizza.getFillingResult().get(Pizza.CHEESE)));
+        tvMushroom.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.MUSHROOM), pizza.getFillingResult().get(Pizza.MUSHROOM)));
+        tvPineapple.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.PINEAPPLE), pizza.getFillingResult().get(Pizza.PINEAPPLE)));
+        tvOlives.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.OLIVES), pizza.getFillingResult().get(Pizza.OLIVES)));
+        tvTomato.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.TOMATO), pizza.getFillingResult().get(Pizza.TOMATO)));
+        tvBasil.setText(String.format("Price %.2f x %d", pizza.getFilling().get(Pizza.BASIL), pizza.getFillingResult().get(Pizza.BASIL)));
+    }
+
     private void setCostAndFilling(int number, String key) {
         if (isAdd) {
             number++;
@@ -165,5 +183,12 @@ public class FillActivity extends AppCompatActivity {
         ivBasil = findViewById(R.id.ivBasil);
         tvBasil = findViewById(R.id.tvBasil);
         tvCoastView = findViewById(R.id.tvCostView);
+    }
+
+    private void returnPizza(){
+        Intent intent = new Intent();
+        intent.putExtra(MainActivity.KEY_PIZZA, pizza);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 }
