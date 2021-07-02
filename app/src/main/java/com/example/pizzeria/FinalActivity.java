@@ -1,10 +1,9 @@
 package com.example.pizzeria;
 
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -23,7 +22,6 @@ public class FinalActivity extends AppCompatActivity {
     private TextView tvSize;
     private Button bOrder;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +30,9 @@ public class FinalActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null) {
             pizza = (Pizza) intent.getSerializableExtra(MainActivity.KEY_PIZZA);
+        }
+        if (savedInstanceState != null){
+            pizza = (Pizza) savedInstanceState.getSerializable(MainActivity.KEY_PIZZA);
         }
         initElements();
 
@@ -119,8 +120,13 @@ public class FinalActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putSerializable("PIZZA", pizza);
+        outState.putSerializable(MainActivity.KEY_PIZZA, pizza);
         super.onSaveInstanceState(outState);
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        pizza = (Pizza) savedInstanceState.getSerializable(MainActivity.KEY_PIZZA);
     }
 
     private String[] createFillList() {
